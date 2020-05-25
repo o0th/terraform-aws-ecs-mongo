@@ -35,6 +35,11 @@ resource "aws_lb_target_group" "this" {
   vpc_id               = var.vpc_id
   target_type          = "ip"
   deregistration_delay = 0
+  health_check {
+    enabled = true
+    interval = 30
+  }
+
 }
 
 resource "aws_lb_listener" "this" {
