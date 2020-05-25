@@ -1,6 +1,8 @@
 [{
   "name": "${name}",
   "image": "${image}",
+  "cpu": ${cpu},
+  "memory": ${memory},
   "environment": [],
   "portMappings": [{
     "containerPort": 27017,
@@ -8,16 +10,8 @@
     "protocol": "tcp"
   }],
   "mountPoints": [{
-    "sourceVolume": "${volume.name}",
-    "containerPath": "${volume.path}",
+    "sourceVolume": "${volume_name}",
+    "containerPath": "${volume_path}",
     "readOnly": false
-  }],
-  "logConfiguration": {
-    "logDriver": "awslogs",
-    "options": {
-      "awslogs-group": "${logs_group}",
-      "awslogs-stream-prefix": "${logs_stream_prefix}",
-      "awslogs-region": "${logs_region}"
-    }
-  }
+  }]
 }]

@@ -2,16 +2,20 @@ variable "name" {
   type = string
 }
 
-variable "env" {
-  type = string
-}
-
 variable "image" {
   type = string
 }
 
 variable "cluster" {
   type = string
+}
+
+variable "cpu" {
+  type = number
+}
+
+variable "memory" {
+  type = number
 }
 
 variable "subnets" {

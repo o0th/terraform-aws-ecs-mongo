@@ -1,7 +1,7 @@
 resource "aws_efs_file_system" "this" {
-  creation_token = "${var.env}-mongo"
+  creation_token = var.name
   tags = {
-    Name = "${var.project.env}-mongo"
+    Name = var.name
   }
 }
 
