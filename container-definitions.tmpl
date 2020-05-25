@@ -1,0 +1,23 @@
+[{
+  "name": "${name}",
+  "image": "${image}",
+  "environment": [],
+  "portMappings": [{
+    "containerPort": 27017,
+    "hostPort": 27017,
+    "protocol": "tcp"
+  }],
+  "mountPoints": [{
+    "sourceVolume": "${volume.name}",
+    "containerPath": "${volume.path}",
+    "readOnly": false
+  }],
+  "logConfiguration": {
+    "logDriver": "awslogs",
+    "options": {
+      "awslogs-group": "${logs_group}",
+      "awslogs-stream-prefix": "${logs_stream_prefix}",
+      "awslogs-region": "${logs_region}"
+    }
+  }
+}]
