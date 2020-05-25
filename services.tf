@@ -23,10 +23,20 @@ resource "aws_ecs_task_definition" "this" {
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
 
-  volume {
-    name = var.name
-    efs_volume_configuration {
-      file_system_id = aws_efs_file_system.this.id
+  dynamic "volume" {
+    for_each = var.volume_type == "efs" ? [1] : []
+    content {
+      name = var.name
+      efs_volume_configuration {
+        file_system_id = aws_efs_file_system.this[0].id
+      }
+    }
+  }
+
+  dynamic "volume" {
+    for_each = var.volume_type == "ebs" ? [1] : []
+    content {
+      name = var.name
     }
   }
 }

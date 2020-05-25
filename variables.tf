@@ -29,3 +29,12 @@ variable "vpc_id" {
 variable "vpc_cidr" {
   type = string
 }
+
+variable "volume_type" {
+  type = string
+}
+
+variable "volume_size" {
+  type = number
+  default = 0
+}
