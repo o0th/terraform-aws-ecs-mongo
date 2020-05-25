@@ -35,6 +35,6 @@ variable "volume_type" {
 }
 
 variable "volume_size" {
-  type = number
+  type    = number
   default = 0
 }

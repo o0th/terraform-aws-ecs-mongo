@@ -1,3 +1,5 @@
+data "aws_region" "this" {}
+
 data "template_file" "container_definitions" {
   template = file("${path.module}/container-definitions.tmpl")
   vars = {
@@ -9,13 +11,14 @@ data "template_file" "container_definitions" {
     volume_path        = "/data/db"
     logs_group         = var.name
     logs_stream_prefix = var.name
-    logs_region        = "eu-west-1"
+    logs_region        = data.aws_region.this.name
   }
 }
 
 resource "aws_ecs_task_definition" "this" {
   family                = var.name
   container_definitions = data.template_file.container_definitions.rendered
+  execution_role_arn    = aws_iam_role.this.arn
 
   cpu    = var.cpu
   memory = var.memory
