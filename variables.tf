@@ -38,3 +38,8 @@ variable "volume_size" {
   type    = number
   default = 0
 }
+
+variable "environment" {
+  type    = list(object({ name = string, value = string }))
+  default = []
+}
